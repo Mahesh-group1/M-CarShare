@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mcar</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <h1 align=center>M-Car Share</h1>
+  </div>
+  <div id="menu">
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Rent</a></li>
+        <li ><a href="#">About Us</a></li>
+		<li style="float:right"><a id="login">Login/Signup</a></li>
+      </ul>
+	</div>
+  </div>
+  <div id="signupBox" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Login</h2>
+    </div>
+    <div class="modal-body">
+	  <form  method="post" action="/login">
+      <p>Username/Email-Id: <input type="text" id="userid" name="userid" /></p>
+	  <p>Password: <input type="password" id="password" name ="password"/></p>
+	  <p><button id="submit">Submit </button></p>
+	  </form>
+	  <hr>
+	  <div class="newUser">
+      <p>New User?</p>
+	  <form action="/signup" method="post">
+	  <ul style="list-style: none;">
+	  <li style="align: left">First Name: <input type="text" id="first_name" name="first_name" /></li>
+	  <li style="align: left">Last Name: <input type="text" id="last_name" name="last_name"/></li>
+      <li style="align: left">Email-Id: &nbsp <input type="text" id="email_id" name="email_id"/></li>
+      <li style="align: left">Phone: <input type="text" id="phone" name="phone"/>	  </li>
+      <li style="align: left">Address: <input type="text" id="address" name="address"/>	  </li>
+	  <li style="align: left">New Password: <input type="password" id="password" name="password"/>	  </li>
+	  <li style="align: left">Confirm Password: <input type="password" id="password" />	  </li>
+	  <li style="align: center"><button id="submit">Submit </button></li>
+	  </ul>
+	  </form> 
+	  
+	  </div>
+    </div>
+  </div>
+
+</div>
+  <div id="content">
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+  </div>
+  <div id="footer">
+    <p><a href="#">Home</a> | <a href="#">About Us</a> <br />
+      </p>
+  </div>
+</div>
+<div id="bottom">
+  <p>Copyright MUN<br /></p>
+</div>
+<script src="js/script.js"></script>
+<script type="text/javascript">
+    function get_action(form) {
+	var userId = document.getElementById("userid").value;
+	if (userId==="admin") {
+        form.action = "adminHome.html";
+	}else {
+	form.action = "MyHome.html";
+	}
+    }
+</script>
+</body>
+</html>
