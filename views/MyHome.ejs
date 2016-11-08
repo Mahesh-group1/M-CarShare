@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Home-Mcar</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <h1 align=center>M-Car Share</h1>
+  </div>
+  <div id="menu">
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li><a href="#">Home</a></li>
+        <li><a href="rent_car">Rent</a></li>
+		<!--li><a href="view_car.html">View Cars</a></li-->
+		<li><a href="myAccount">My Account</a></li>
+        <li ><a href="#">About Us</a></li>
+		<li style="float:right"><a href="index.htm">Logout</a></li>
+      </ul>
+	</div>
+  </div>
+   <div id="content">
+     <p style="font-size:20px;"> Hi <%= user %> <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+  </div>
+  <div id="footer">
+    <p><a href="#">Home</a> | <a href="#">About Us</a> <br />
+      </p>
+  </div>
+</div>
+<div id="bottom">
+  <p>Copyright MUN<br /></p>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

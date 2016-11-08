@@ -1,0 +1,362 @@
+
+body {
+  background: #EFEFEF;
+  text-align: center;
+  font-family: verdana, arial, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  color: #444444;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* columns */
+
+#content ul.content {
+	width: 100%;
+	padding: 0;
+	margin: 10px 0;
+	list-style: none;
+}
+
+#content ul.content li {
+	float: left;
+	width: 230px; /*Set default width*/
+	padding: 0;
+	margin: 5px 0;
+	display: inline;
+}
+
+#content .block {
+	height: 200px;
+	font-size: 1em;
+	margin-right: 10px; /*Creates the 10px gap between each column*/
+	padding: 20px;
+	background: #d6a965;
+/* curved border radius */
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#content .block a {
+	color: #FFF;
+	}
+	
+#content .block img {
+  /*Flexible image size with border*/
+	width: 89%;  /*Took 1% off of the width to prevent IE6 bug*/
+	padding: 5%;
+	background:#fff;
+	margin: 0 auto;
+	display: block;
+	-ms-interpolation-mode: bicubic; /*prevents image pixelation IE 6/7 */
+	}
+/* end of column configuration */
+
+.cars img {
+  /*Flexible image size with border*/
+	width: 89%;  /*Took 1% off of the width to prevent IE6 bug*/
+	padding: 5%;
+	background:#fff;
+	margin: 0 auto;
+	display: block;
+	-ms-interpolation-mode: bicubic; /*prevents image pixelation IE 6/7 */
+	}
+.cars td {
+  /*Flexible image size with border*/
+	width: 200px;
+	height: 200px;
+	}	
+* {
+    box-sizing: border-box;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* LINKS */
+
+a:link {color:#FF6600; text-decoration: none;} 
+a:visited {color:#FF6600; text-decoration: none;} 
+a:hover,a:active {color:#FF6600; text-decoration: underline;}
+
+#top  a:link {color:#FF6600; text-decoration: none; font-weight: bold; border-bottom:none;} 
+#top a:visited {color:#FF6600; text-decoration: none;font-weight: bold;} 
+#top a:hover, #top a:active {color:#FF6600; text-decoration: underline;font-weight: bold;}
+
+#footer  a:link {color:#FFFFFF; text-decoration: none; font-weight: bold; border-bottom:none; padding-left:10px; padding-right: 10px;} 
+#footer  a:visited {color:#FFFFFF; text-decoration: none;font-weight: bold; padding-left:10px; padding-right: 10px;} 
+#footer  a:hover, #footer  a:active {color:#FBAF5D; text-decoration: none;font-weight: bold; padding-left:10px; padding-right: 10px;}
+
+#bottom  a:link {color:#FF6600; text-decoration: none; font-weight: bold; border-bottom:none;} 
+#bottom a:visited {color:#FF6600; text-decoration: none;font-weight: bold;} 
+#bottom a:hover, #bottom a:active {color:#FF6600; text-decoration: underline; font-weight: bold;}
+
+/* LISTS */
+
+#content ul { padding-left: 0px; margin-left: 20px; color: #444444; line-height: 18px; margin-top: 10px;margin-bottom:10px;}
+#content li { list-style-type: square;  padding:0px;}
+
+/* TYPOGRAPHY */
+
+p { margin: 0px; padding: 0px; margin-bottom: 10px; }
+
+h1 { font-size: 17px; line-height: 20px;color: #003366; margin:0px; padding: 0px; margin-bottom: 5px; }
+h2 { font-size: 17px; line-height: 20px;color: #003366; margin:0px; padding: 0px; margin-bottom: 5px; }
+h3 { font-size: 17px; line-height: 19px;color: #003366; margin:0px; padding: 0px; margin-bottom: 5px; }
+h4 { font-size: 14px; line-height: 17px;color: #003366; margin:0px; padding: 0px; margin-bottom: 5px; }
+h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5px; letter-spacing: 2px; }
+
+#header h1 { font-size: 40px; line-height: 32px; letter-spacing: -1px; color: #a5c4d6; margin:0px; padding: 0px;  padding-top: 25px;margin-bottom: 5px; padding-left:35px; font-family: "Calibri"}
+#header h2 { font-size: 14px; line-height: 16px; letter-spacing: 1px; color: #DDDDDD; margin:0px; padding: 0px;  padding-top: 0px;margin-bottom: 5px; padding-left:35px;}
+
+/* CONTAINERS */
+
+#wrapper {
+  width:1000px;
+  margin: 0 auto;
+  background:  url('images/content.jpg') top left repeat-y;
+  padding: 0px;
+}
+
+#top {
+  width: 1000px;
+  height: 40px;
+  background:  url('images/top.jpg') top left no-repeat;
+  padding: 0px;
+}
+
+#top p {
+  text-align:left;
+  padding-left: 35px;
+  padding-top: 9px;
+  padding-bottom:0px;
+  line-height: 12px;
+  font-size:12px
+}
+
+#header {
+  width: 1000px;
+  height: 120px;
+  background:  #524747 url('images/logo.png') top left no-repeat;
+  text-align:left;
+}
+
+#menu {
+  width: 1000px;  
+  height: 30px; 
+  margin: 0 auto;
+  clear:both;
+}
+
+#content {
+	clear: both;
+  padding: 0px; margin: 0px;
+  border: 0px dashed #cccccc;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  clear:both;
+  text-align: left;
+  padding-left: 35px;
+  background: #004A80 url('images/car1.jpg');
+}
+
+#content #inside {
+  width:870px;
+  text-align: left;
+}
+
+#content #inside #left {
+  float: left;
+  width: 180px;
+}
+
+#content #inside #middle {
+  margin-left: 15px;
+  float:left;;
+  width: 470px;
+}
+
+#content #inside #right {
+  margin-left: 15px;
+  float:left;
+  width: 180px;
+}
+
+#footer {
+  width: 1000px;
+  height: 80px;
+  background: #004A80 bottom left no-repeat;
+}
+
+#footer p {
+  text-align:center;
+  padding-left: 20px;
+  padding-top: 17px;
+  padding-bottom:0px;
+  line-height: 16px;
+  font-size:12px;
+  color: #DDDDDD;
+}
+
+#bottom {
+  width:940px;
+  margin: 0 auto;
+  padding: 0px;
+  text-align:center;
+  padding-left: 20px;
+  padding-top: 0px;
+  padding-bottom:0px;
+  line-height: 16px;
+  font-size:12px
+}
+
+/* NAVIGATION */
+
+#navcontainer ul
+{
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: #F3A90A;
+  color: #FFFFFF;
+  float: left;
+  width: 100%;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 14px; font-weight: bold;
+}
+
+#navcontainer ul li { display: inline; }
+
+#navcontainer ul li a
+{
+  padding:10px 15px;
+  background-color: #F3A90A;
+  color: #FFFFFF;
+  text-decoration: none;
+  float: left;
+  border-right: 1px solid #fff;
+}
+
+#navcontainer ul li a:hover
+{
+  background-color: #FCC347;
+  color: #111111;
+}
+
+/* IMAGE PLACEMENT */
+
+.float_left {
+  float:left;
+  border: 0px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;  
+  margin-left: 10px;
+}
+
+.float_right {
+  float:right;
+  border: 0px;
+  margin-left: 10px;
+  margin-bottom: 5px;  
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+/* OTHER */
+
+.box_468x60 {
+  border:1px solid #DDDDDD;
+  background-color: #f9f9f9;
+  width: 468px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.box_180x60 {
+  border:1px solid #E6E6E6;
+  background-color: #f9f9f9;
+  width: 180px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.spacer {
+  clear:both;
+}
+.economy li{
+	display:inline;
+}

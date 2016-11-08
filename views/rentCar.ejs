@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mcar</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<script>
+function showCars(num) {
+
+	if (num===1){
+	document.getElementById('economy').style.display="block";
+	document.getElementById('economy1').border="2";
+	document.getElementById('suv').style.display="none";
+	document.getElementById('suv1').border="0";
+	document.getElementById('sporty').style.display="none";
+	document.getElementById('sporty1').border="0";
+	document.getElementById('luxury').style.display="none";
+	document.getElementById('luxury1').border="0";
+	}else if (num===2){
+	document.getElementById('economy').style.display="none";
+	document.getElementById('economy1').border="0";
+	document.getElementById('suv').style.display="block";
+	document.getElementById('suv1').border="2";
+	document.getElementById('sporty').style.display="none";
+	document.getElementById('sporty1').border="0";
+	document.getElementById('luxury').style.display="none";
+	document.getElementById('luxury1').border="0";
+	}else if (num===3){
+	document.getElementById('economy').style.display="none";
+	document.getElementById('economy1').border="0";
+	document.getElementById('suv').style.display="none";
+	document.getElementById('suv1').border="0";
+	document.getElementById('sporty').style.display="none";
+	document.getElementById('sporty1').border="0";
+	document.getElementById('luxury').style.display="block";
+	document.getElementById('luxury1').border="2";
+	}else if (num===4){
+	document.getElementById('economy').style.display="none";
+	document.getElementById('economy1').border="0";
+	document.getElementById('suv').style.display="none";
+	document.getElementById('suv1').border="0";
+	document.getElementById('sporty').style.display="block";
+	document.getElementById('sporty1').border="2";
+	document.getElementById('luxury').style.display="none";
+	document.getElementById('luxury1').border="0";
+	}
+  
+}
+
+</script>
+<script>
+   function selectCar(vr) {
+   document.getElementById('Honda_Fit').border="0";
+   document.getElementById('Audi_a3').border="0";
+   document.getElementById('explorer_suv').border="0";
+   document.getElementById('Micra').border="0";
+   document.getElementById('porsche').border="0";
+   document.getElementById('prado').border="0";
+   document.getElementById('Dodge_Challenger').border="0";
+   document.getElementById('ferrari_italia').border="0";
+   vr.border="2";
+   document.getElementById('setCar').value=vr.id;
+   document.getElementById('submit').style.display="block";
+   }
+   </script>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <h1 align=center>M-Car Share</h1>
+  </div>
+  <div id="menu">
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li><a href="MyHome.html">Home</a></li>
+        <li><a href="rent_car.html">Rent</a></li>
+		<li><a href="#">My Account</a></li>
+        <li ><a href="#">About Us</a></li>
+		<li style="float:right"><a href="index.htm">Logout</a></li>
+      </ul>
+	</div>
+  </div>
+   <div id="content">
+   <form action="/bookCar" method="post">
+   <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+    <div class="cf pick-up-location" data-reactid=".0.1.1.0.1.1.0">
+   <div class="locationInput-active" data-reactid=".0.1.1.0.1.1.0.0">
+   <label for="pickupLocationTextBox" class="location-input-label" data-reactid=".0.1.1.0.1.1.0.0.0">
+   <b><em>Select Location:</em></b>&nbsp&nbsp<select name="carLocation">
+  <option value="#">------</option>
+  <option value="mun">MUN</option>
+  <option value="avalon">Avalon Mall</option>
+  <option value="village">Village Mall</option>
+	</select></label>
+	</div>
+	</div> 
+<br>  
+   <p><b>Pick-Up Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="date" id="myDate" name="pickupDate" value="yyyy-mm-dd"/> </p>
+
+<p><b>Return Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="date" id="myDate" name="returnDate" value="yyyy-mm-dd"/> </p>
+
+   
+   <h2 style="color:black"><b><em>CHOOSE VEHICLE CLASS</em></b></h2>
+   <div>
+<ul class="content">
+				    <!--eqblock-->
+				    <li>
+				        <section class="block">
+									<img id="economy1" src="css/images/economy1.jpg"  onclick=showCars(1) style="height:105px;" /> 
+										<h2><a  onclick=showCars(1)>Economy</a></h2> 
+										<p>Kia Rio or similar</p>
+										<p>Rates per day: <b style="color:#FF0000">CAD 10</b></p>
+				        </section>
+				    </li>
+
+				    <!--eqblock-->
+				    <li>
+				        <section class="block">
+									<img id="suv1" src="css/images/suv1.jpg"  onclick=showCars(2)  /> 
+										<h2><a  onclick=showCars(2)>SUV</a></h2> 
+										<p>Chrysler 200 or similar</p>
+										<p>Rates per day: <b style="color:#FF0000">CAD 15</b></p>										
+				        </section>
+				    </li>
+
+				    <!--eqblock-->
+				    <li>
+				        <section class="block">
+									<img id="luxury1" src="css/images/luxury1.jpg" onclick=showCars(3)  /> 
+										<h2><a  onclick=showCars(3)>Luxury</a></h2> 
+										<p>Cadillac XTS or similar </p>
+										<p>Rates per day: <b style="color:#FF0000">CAD 10</b></p>										
+				        </section>
+				    </li>
+
+				    <!--eqblock-->
+				    <li>
+				        <section class="block">
+									<img id="sporty1" src="css/images/sporty1.jpg"  onclick=showCars(4) /> 
+										<h2><a  onclick=showCars(4)>Sporty</a></h2> 
+										<p>Dodge Challenger or similar</p>
+										<p>Rates per day: <b style="color:#FF0000">CAD 10</b></p>
+				        </section>
+				    </li>
+			</ul>
+			
+		</div>	
+			<div class='cars' style="display: none" id="economy">
+			<h2 style="color:black">Select the Car</h2>:<br>
+		<table align="center">
+				    <!--eqblock-->
+					<tr >
+				    <td><section class="block"> <img id="Honda_Fit" src="css/images/Honda_Fit.jpg"  onclick=selectCar(this) /> 
+										<h2><a >Honda Fit</a></h2></section>
+										
+				    </td>
+
+				    <!--eqblock-->
+				    <td><section class="block"> <img id="Micra" src="css/images/Micra.png"  onclick=selectCar(this) /> 
+										<h2><a >Micra</a></h2></section>									
+				    </td>
+					</tr>
+				
+			</table>
+			</div>
+			
+					<div class='cars' style="display: none" id="suv">
+								<h2 style="color:black">Select the Car</h2>:<br>
+		<table  align="center">
+				    <tr>
+				    <td><section class="block"><img id="prado" src="css/images/prado.png" onclick=selectCar(this) /> 
+										<h2><a >Prado</a></h2></section>
+				    </td>
+
+				    <!--eqblock-->
+				    <td><section class="block"><img id="explorer_suv" src="css/images/explorer_suv.jpg" onclick=selectCar(this)  /> 
+										<h2><a >Explorer</a></h2> </section>									
+				    </td>
+				</tr>
+			</table>
+			</div>
+			
+					<div class='cars' style="display: none" id="luxury">
+					<h2 style="color:black">Select the Car</h2>:<br>
+		<table  align="center">
+				    <tr>
+				    <td><section class="block"><img id="Audi_a3"src="css/images/Audi_a3.jpg" onclick=selectCar(this) /> 
+										<h2><a >Audi A3</a></h2></section>
+				    </td>
+
+				    <!--eqblock-->
+				    <td><section class="block"><img id="porsche"src="css/images/porsche.png" onclick=selectCar(this)  /> 
+										<h2><a >Porsche</a></h2></section> 									
+				    </td>
+				</tr>
+			</table>
+			</div>
+			
+					<div class='cars' style="display: none" id="sporty">
+					<h2 style="color:black">Select the Car</h2>:<br>
+		<table  align="center">
+				    <tr>
+				    <td><section class="block"><img id="ferrari_italia" src="css/images/ferrari_italia.jpg" onclick=selectCar(this) /> 
+										<h2><a >Sporty</a></h2></section>
+				    </td>
+
+				    <!--eqblock-->
+				    <td><section class="block"><img id="Dodge_Challenger" src="css/images/Dodge_Challenger.jpg" onclick=selectCar(this)  /> 
+										<h2><a >Sporty</a></h2></section> 									
+				    </td>
+				</tr>
+			</table>
+			</div>
+			<p align="center"> <br><br><input id="submit" type="submit" value="Submit" style="display:none" /></p>
+			<input type="text" id="setCar" name="setCar" style="display: none"/>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</form>
+  </div>
+  <div id="footer">
+    <p><a href="#">Home</a> | <a href="#">About Us</a> <br />
+      </p>
+  </div>
+</div>
+<div id="bottom">
+  <p>Copyright MUN<br /></p>
+</div>
+
+</body>
+
+</html>
