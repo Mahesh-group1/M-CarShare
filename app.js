@@ -174,5 +174,5 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 http.createServer(app).listen(3340, function(){
-  console.log('Express server listening on port ' + 3340);
+  console.log('Express server listening on port 3340');
 });
