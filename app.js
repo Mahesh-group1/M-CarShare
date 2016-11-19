@@ -11,7 +11,6 @@ var express = require('express')
   , bodyParser = require('body-parser')
   //, formidable = require("formidable")
   , util = require('util')
-  , logger = require('morgan')
   , fs =require('fs'),
   Booking =require('./Booking.js'),
   Customer=require('./Customer.js');
