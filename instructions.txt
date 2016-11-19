@@ -1,0 +1,7 @@
+1) Import --> General --> Existing project into workspace. Choose the .zip file and import it. 
+2) Run a npm install from the project directory loction,which will install the dependencies in the package.json file.
+3) Run the app.js file as Node Application.
+	Incase if it gives modules errors, kindly install appropriate modules, and it will work.
+4) The server will start listening on port 3000.
+5) You can access the system with this url http://localhost:3000/index.htm
+6) In this iteration we've implemented login, registration and book car use cases.

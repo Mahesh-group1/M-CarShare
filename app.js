@@ -9,7 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , bodyParser = require('body-parser')
-  , formidable = require("formidable")
+  //, formidable = require("formidable")
   , util = require('util')
   , logger = require('morgan')
   , fs =require('fs'),
@@ -29,11 +29,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-app.get('/index.htm', function (req, res) {
-   res.sendfile( __dirname + "/" + "index.htm" );
-});
+
+app.get('/', function (req, res) {
+	   res.sendfile( __dirname + "/" + "index.htm" );
+	});
 app.get('/MyHome', function (req, res) {
-	res.render('MyHome',{userId: userId});
+	res.render('MyHome',{user: userId,userId: userId});
 	});
 
 app.post('/login', function (req, res) {
@@ -55,8 +56,8 @@ app.post('/login', function (req, res) {
 		  if (chck!=-1 ){
 			  if (req.body.password===jsonData[chck].password ){
 		  		//res.sendfile(__dirname + "/" + "MyHome.html" )
-				  userId=jsonData[i].user_id;
-		  		res.render('MyHome',{user: jsonData[chck].user_id});
+				  var userId=jsonData[i].user_id;
+		  		res.render('MyHome',{user: jsonData[chck].user_id,userId: jsonData[chck].user_id});
 		  		
 			  }
 			  else {
@@ -91,7 +92,7 @@ app.post('/signup', function (req, res) {
 	    }
 	  }
 	  if (chck===-1){
-		  userId=req.body.email_id;
+		  var userId=req.body.email_id;
 		  jsonData.push({user_id: req.body.email_id, password:req.body.password});
 	        var json = JSON.stringify(jsonData); 
 	        fs.writeFile(__dirname +'/public/login_details.json', json);
@@ -172,6 +173,6 @@ app.post('/bookCar', function (req, res) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(3340, function(){
+  console.log('Express server listening on port ' + 3340);
 });
