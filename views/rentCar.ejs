@@ -69,13 +69,27 @@ function showCars(num) {
 <div id="wrapper">
   <div id="header">
     <h1 align=center>M-Car Share</h1>
+    <h3 align=right>Hi <%= user%> </h3>
   </div>
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="MyHome">Home</a></li>
-        <li><a href="rent_car.html">Rent</a></li>
-		<li><a href="#">My Account</a></li>
+        <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+  <input type="hidden" name="user" value=<%= user%> />
+  <a onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><a href="#">Rent</a></li>	
+		<li><form id="myform2" method="post" action="/returnCar">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+  <input type="hidden" name="user" value=<%= user%> />
+  <a  href="#" onclick="document.getElementById('myform2').submit();">Return Car</a>
+</form></li>
+		<li><form id="myform3" method="post" action="/myAccount">
+  <input type="hidden" name="userId" value=<%= userId%> />
+  <input type="hidden" name="user" value=<%= user%> /> 
+  <a href="#" onclick="document.getElementById('myform3').submit();">My Account</a>
+</form></li>
         <li ><a href="#">About Us</a></li>
 		<li style="float:right"><a href="index.htm">Logout</a></li>
       </ul>
@@ -84,6 +98,7 @@ function showCars(num) {
    <div id="content">
    <form action="/bookCar" method="post">
    <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+   <input type = "text" name="user" value= <%= user%> style="display: none"/>
     <div class="cf pick-up-location" data-reactid=".0.1.1.0.1.1.0">
    <div class="locationInput-active" data-reactid=".0.1.1.0.1.1.0.0">
    <label for="pickupLocationTextBox" class="location-input-label" data-reactid=".0.1.1.0.1.1.0.0.0">
@@ -96,9 +111,8 @@ function showCars(num) {
 	</div>
 	</div> 
 <br>  
-   <p><b>Pick-Up Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="date" id="myDate" name="pickupDate" value="yyyy-mm-dd"/> </p>
-
-<p><b>Return Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="date" id="myDate" name="returnDate" value="yyyy-mm-dd"/> </p>
+   <p><b>Pick-Up Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="datetime-local" id="myDate" name="pickupDate"/> </p>
+<p><b>Return Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="datetime-local" id="myDate" name="returnDate"/> </p>
 
    
    <h2 style="color:black"><b><em>CHOOSE VEHICLE CLASS</em></b></h2>

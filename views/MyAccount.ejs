@@ -11,13 +11,26 @@
 <div id="wrapper">
   <div id="header">
     <h1 align=center>M-Car Share</h1>
+    <h3 align=right>Hi <%= custDetails.getFirstName()%> </h3>
   </div>
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="#">Home</a></li>
-        <li><a href="rent_car">Rent</a></li>
-		<!--li><a href="view_car.html">View Cars</a></li-->
+        <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= custDetails.getUserName()%> />
+  <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> /> 
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><form id="myform2" method="post" action="/rent_car">
+  <input type="hidden" name="userId" value=<%= custDetails.getUserName() %> />
+  <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> /> 
+  <a href="#" onclick="document.getElementById('myform2').submit();">Rent</a>
+</form></li>
+		<li><form id="myform3" method="post" action="/returnCar">
+  <input type="hidden" name="userId" value=<%= custDetails.getUserName()%> />
+  <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> /> 
+  <a  href="#" onclick="document.getElementById('myform3').submit();">Return Car</a>
+</form></li>
 		<li><a >My Account</a></li>
         <li ><a href="#">About Us</a></li>
 		<li style="float:right"><a href="index.htm">Logout</a></li>
@@ -27,7 +40,7 @@
    <div id="content">
      <p style="font-size:20px;"> Proile Details:</p>
 <ul style="list-style: none;">
-	  <li style="align: left">Name: <%= custDetails.getName() %></li>
+	  <li style="align: left">Name: <%= custDetails.getFirstName() %> &nbsp <%= custDetails.getLastName() %></li>
       <li style="align: left">Email-Id: &nbsp <%= custDetails.getUserName() %></li>
       <li style="align: left">Phone: <%= custDetails.getPhone() %>	  </li>
       <li style="align: left">Address: <%= custDetails.getAddress() %>	  </li>

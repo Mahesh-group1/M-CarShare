@@ -10,14 +10,31 @@
 <div id="wrapper">
   <div id="header">
     <h1 align=center>M-Car Share</h1>
+    <h3 align=right>Hi <%= user%> </h3>
   </div>
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="MyHome">Home</a></li>
-        <li><a href="rent_car.html">Rent</a></li>
-		<!-- <li><a href="view_car.html">View Cars</a></li> -->
-		<li><a href="#">My Account</a></li>
+        <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><form id="myform1" method="post" action="/rent_car">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform1').submit();">Rent</a>
+</form></li>
+		<li><form id="myform2" method="post" action="/returnCar">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a  href="#" onclick="document.getElementById('myform2').submit();">Return Car</a>
+</form></li>
+		<li><form id="myform3" method="post" action="/myAccount">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform3').submit();">My Account</a>
+</form></li>
         <li ><a href="#">About Us</a></li>
 		<li style="float:right"><a href="index.htm">Logout</a></li>
       </ul>
@@ -26,8 +43,15 @@
    <div id="content">
 
    
-   <p style="font-size:20px;"> Thank You for the booking! Your Booking Id is: <%= bookingId%>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   <p style="font-size:20px;"> Thank You for the booking! Your Booking Id is: <%= booking_dtls.getBookingId()%>
+        <p style="font-size:20px;"> Booking Details:</p>
+<ul style="list-style: none;">
+	  <li style="align: left">Pick-up Location: <%= booking_dtls.getLocation() %></li>
+      <li style="align: left">Booking Date: &nbsp <%= booking_dtls.getBookingDate() %></li>
+      <li style="align: left">Return Date: <%= booking_dtls.getReturnDate() %>	  </li>
+      <li style="align: left">Booked Car: <%= booking_dtls.getCar() %>	  </li>
+	  </ul>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>
   <div id="footer">

@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Home-Mcar</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript">
+     function configureDropDownLists(ddl1,ddl2) {
+    var economy = ['Honda Fit', 'Micra'];
+    var suv = ['Prado', 'Explorer'];
+    var luxury = ['Audi A3', 'Porsche'];
+	var sporty = ['Ferrari Italia', 'Dodge'];
+    switch (ddl1.value) {
+        case 'economy':
+            ddl2.options.length = 0;
+            for (i = 0; i < economy.length; i++) {
+                createOption(ddl2, economy[i], economy[i]);
+            }
+            break;
+        case 'suv':
+            ddl2.options.length = 0; 
+        for (i = 0; i < suv.length; i++) {
+            createOption(ddl2, suv[i], suv[i]);
+            }
+            break;
+        case 'luxury':
+            ddl2.options.length = 0;
+            for (i = 0; i < luxury.length; i++) {
+                createOption(ddl2, luxury[i], luxury[i]);
+            }
+            break;
+        case 'sporty':
+            ddl2.options.length = 0;
+            for (i = 0; i < sporty.length; i++) {
+                createOption(ddl2, sporty[i], sporty[i]);
+            }
+            break;
+            default:
+                ddl2.options.length = 0;
+            break;
+    }
+
+}
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
+
+
+</head>
+
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <h1 align=center>M-Car Share</h1>
+
+  </div>
+  <div id="menu">
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li><a href="#">Home</a></li>
+        <li> <a href="#">Add Car</a></li>
+		<li><a  href="#" >Bookings</a></li>
+		<li ><a href="#">About Us</a></li>
+		<li style="float:right"><a href="index.htm">Logout</a></li>
+      </ul>
+	</div>
+  </div>
+   <div id="content">
+     <div id="inside">
+     	<div id="left">
+     	    	<p> Add Car:</p>
+     	Select Car Class: <select name="carLocation" >
+  <option value="#">------</option>
+  <option value="economy">Economy</option>
+  <option value="suv">SUV</option>
+  <option value="luxury">Luxury</option>
+  <option value="sporty">Sporty</option>
+	</select>
+<p> Select Car Brand and Model:
+<select >
+</select>
+</p>
+     	</div>
+     	<div id="right">
+     	<form>
+     	<table>
+     	<tr><th> Add Car:</th></tr>
+
+     	<tr><td>Select Car Class:</td><td> <select style="width:100px" name="carLocation" id="ddl" onchange="configureDropDownLists(this,document.getElementById('ddl2'))">
+  <option value="#">------</option>
+  <option value="economy">Economy</option>
+  <option value="suv">SUV</option>
+  <option value="luxury">Luxury</option>
+  <option value="sporty">Sporty</option>
+	</select></td></tr>
+<tr><td> Select Car Brand and Model:</td><td>
+<select id="ddl2" style="width:100px">
+</select>
+</td></tr>
+<tr><td>Enter Car Number:</td> <td> <input type="text" name="car_number" /> </td></tr>
+<tr><td> Car Model year:</td> <td> <input type="text" name="car_year" /> </td></tr>
+<tr><td> KM Driven:</td> <td> <input type="number" name="car_km" /> </td></tr>
+<tr><td> Select Car location:</td> <td> <select name="carLocation">
+  <option value="#">------</option>
+  <option value="mun">MUN</option>
+  <option value="avalon">Avalon Mall</option>
+  <option value="village">Village Mall</option>
+	</select> </td></tr>
+</table>
+     	</div>     	
+     </div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+  </div>
+  <div id="footer">
+    <p><a href="#">Home</a> | <a href="#">About Us</a> <br />
+      </p>
+  </div>
+</div>
+<div id="bottom">
+  <p>Copyright MUN<br /></p>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -16,16 +16,20 @@
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="#">Home</a></li>
-        <li><form id="myform" method="post" action="/rent_car">
+                <li><form id="myform" method="post" action="/MyHome">
   <input type="hidden" name="userId" value=<%= userId%> />
   <input type="hidden" name="user" value=<%= user%> /> 
-  <a href="#" onclick="document.getElementById('myform').submit();">Rent</a>
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><form id="myform1" method="post" action="/rent_car">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+  <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform1').submit();">Rent</a>
 </form></li>
 		<li><form id="myform2" method="post" action="/returnCar">
-  <input type="hidden" name="userId" value=<%= userId%> />
-  <input type="hidden" name="user" value=<%= user%> />  
-  <a  href="#" onclick="document.getElementById('myform2').submit();">Return Car</a>
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+  <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform2').submit();">Return Car</a>
 </form></li>
 		<li><form id="myform3" method="post" action="/myAccount">
   <input type="hidden" name="userId" value=<%= userId%> /> 
@@ -38,7 +42,13 @@
 	</div>
   </div>
    <div id="content">
-     <p style="font-size:20px;"> Hi <%= user %>
+          <p style="font-size:20px;"> Trip Details:</p>
+<ul style="list-style: none;">
+	  <li style="align: left">Booked Car: <%= trp_dtls.car %></li>
+      <li style="align: left">No. of days booked: &nbsp <%= no_of_days %></li>
+      <li style="align: left">Kms Driven: <%= total_kms %>	  </li>
+      <li style="align: left">Fuel Consumed: <%= fuel_left %>%	  </li>
+	  </ul> 
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>

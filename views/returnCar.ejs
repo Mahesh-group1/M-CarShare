@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Home-Mcar</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<script>
+function  getId(element) {
+    alert("row" + element.parentNode.parentNode.rowIndex + 
+    " - column" + element.parentNode.cellIndex + " - data" + element.parentNode.parentNode.cells[0].innerHTML);
+    document.getElementById('bookingId').value=element.parentNode.parentNode.cells[0].innerHTML;
+}
+</script>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <h1 align=center>M-Car Share</h1>
+    <h3 align=right>Hi <%= user%> </h3>
+  </div>
+  <div id="menu">
+    <div id="navcontainer">
+      <ul id="navlist">
+                <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><form id="myform2" method="post" action="/rent_car">
+  <input type="hidden" name="userId" value=<%= userId%> />
+    <input type="hidden" name="user" value=<%= user%> /> 
+  <a href="#" onclick="document.getElementById('myform2').submit();">Rent</a>
+</form></li>
+		<li><a href="#">Return Car</a>
+</form></li>
+		<li><form id="myform3" method="post" action="/myAccount">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform3').submit();">My Account</a>
+</form></li>
+        <li ><a href="#">About Us</a></li>
+		<li style="float:right"><a href="index.htm">Logout</a></li>
+      </ul>
+	</div>
+  </div>
+   <div id="content">
+   
+   <% if (numbrs==0){ %>
+   <p style="font-size:20px;"> No car to return. Make a booking and then check out before you can return a Car</p>
+   
+   <% } else { %>
+   <TABLE id="thetable" width="350px" border="1"> 
+  	<TR>
+  	<th>Pick-up Location</th>  <th>Pickup Date</th> <th>Return Date</th> <th>Booked Car</th> <th>Booking Time </th> <th>Location to Drop</th>
+  	</tr>
+       <form method="post" action="/tripDetails">
+       <input type="hidden" name="bookingId" id="bookingId" value="123"/>
+       <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+       <input type = "text" name="user" value= <%= user%> style="display: none"/>
+	   <% for (var i = 0; i < bookings.length; ++i) {  %>
+  	<TR> 
+  	<TD style="display:none"><%=bookings[i].Booking_Id %></TD>
+  	<TD><%=bookings[i].Pickup_location %></TD>
+  	<TD><%=bookings[i].Pickup_date%></TD>
+  	<TD><%=bookings[i].Return_Date%></TD>
+  	<TD><%=bookings[i].car%></TD>
+  	<TD><%=bookings[i].booking_time%></TD>
+  	<TD><select name="carLocation">
+  <option value="#">------</option>
+  <option value="mun">MUN</option>
+  <option value="avalon">Avalon Mall</option>
+  <option value="village">Village Mall</option>
+	</select></TD>
+	<TD><input type="submit" value="Submit" onclick="getId(this)"/></TD>
+	
+  	</TR>
+  	<form>
+  	
+  	<% } %>
+	</TABLE>
+  	<% } %>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+  </div>
+  <div id="footer">
+    <p><a href="#">Home</a> | <a href="#">About Us</a> <br />
+      </p>
+  </div>
+</div>
+<div id="bottom">
+  <p>Copyright MUN<br /></p>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

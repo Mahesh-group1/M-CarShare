@@ -232,25 +232,21 @@ h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5
 }
 
 #content #inside {
-  width:870px;
+  width:875px;
   text-align: left;
 }
 
 #content #inside #left {
   float: left;
-  width: 180px;
+  width: 430px;
+  height: 430px
 }
 
-#content #inside #middle {
-  margin-left: 15px;
-  float:left;;
-  width: 470px;
-}
 
 #content #inside #right {
   margin-left: 15px;
   float:left;
-  width: 180px;
+  width: 430px;
 }
 
 #footer {

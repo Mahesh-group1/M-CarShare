@@ -8,10 +8,14 @@ function Booking(Location, BookingId, BookingDate, ReturnDate, BookingTime, User
 	this._BookingTime=BookingTime;
 	this._User=User;
 	this._Car=Car;
+	this._Status=Status;
 }
 
 Booking.prototype.getBookingId=function(){
 	return this._BookingId;
+};
+Booking.prototype.setBookingId=function(BookingId){
+	this._BookingId=BookingId;
 };
 
 Booking.prototype.getLocation=function(){
@@ -36,6 +40,14 @@ Booking.prototype.getUser=function(){
 
 Booking.prototype.getCar=function(){
 	return this._Car;
+};
+
+Booking.prototype.setStatus=function(){
+	this._Status=Status;
+};
+
+Booking.prototype.getStatus=function(){
+	return this._Status;
 };
 
 module.exports = Booking;
