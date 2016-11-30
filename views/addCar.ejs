@@ -74,33 +74,89 @@
    <div id="content">
      <div id="inside">
      	<div id="left">
-     	    	<p> Add Car:</p>
-     	Select Car Class: <select name="carLocation" >
-  <option value="#">------</option>
-  <option value="economy">Economy</option>
-  <option value="suv">SUV</option>
-  <option value="luxury">Luxury</option>
-  <option value="sporty">Sporty</option>
-	</select>
-<p> Select Car Brand and Model:
-<select >
-</select>
-</p>
+     	    	<p> Available Cars:</p>
+		<% if (economy_cars.length>0){%>
+		 <b> Economy Cars: </b>
+		 <ul>
+		   <% for (var i = 0; i < economy_cars.length; ++i) { %>
+		   <li>
+		   	  <ul> 
+		      <li style="list-style-type: none;">Car Brand and Model: <%= economy_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none;">Car Number: <%= economy_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none;">Car Year: <%= economy_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none;">Car Km: <%= economy_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none;">Car Location:<%= economy_cars[i].Car_Location %></p>
+		   		</ul>
+		   	</li>
+		   	
+		   	<% } %>
+		   	</ul> <% } %>
+		   	<% if (suv_cars.length>0){%>
+		 <b> SUV Cars: </b>
+		 <ul>
+		   <% for (var i = 0; i < suv_cars.length; ++i) { %>
+		   <li>
+		   	  <ul> 
+		      <li style="list-style-type: none;">Car Brand and Model: <%= suv_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none;">Car Number: <%= suv_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none;">Car Year: <%= suv_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none;">Car Km: <%= suv_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none;">Car Location:<%= suv_cars[i].Car_Location %></p>
+		   		</ul>
+		   	</li>
+		   	
+		   	<% } %>
+		   	</ul> <% } %>
+		   	
+		   	<% if (luxury_cars.length>0){%>
+		 <b> Luxury Cars: </b>
+		 <ul>
+		   <% for (var i = 0; i < luxury_cars.length; ++i) { %>
+		   <li>
+		   	  <ul> 
+		      <li style="list-style-type: none;">Car Brand and Model: <%= luxury_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none;">Car Number: <%= luxury_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none;">Car Year: <%= luxury_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none;">Car Km: <%= luxury_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none;">Car Location:<%= luxury_cars[i].Car_Location %></p>
+		   		</ul>
+		   	</li>
+		   	
+		   	<% } %>
+		   	</ul> <% } %>
+		   	
+		   		<% if (sporty_cars.length>0){%>
+		 <b> Sporty Cars: </b>
+		 <ul>
+		   <% for (var i = 0; i < sporty_cars.length; ++i) { %>
+		   <li>
+		   	  <ul> 
+		      <li style="list-style-type: none;">Car Brand and Model: <%= sporty_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none;">Car Number: <%= sporty_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none;">Car Year: <%= sporty_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none;">Car Km: <%= sporty_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none;">Car Location:<%= sporty_cars[i].Car_Location %></p>
+		   		</ul>
+		   	</li>
+		   	
+		   	<% } %>
+		   	</ul> <% } %>
+		   	
      	</div>
      	<div id="right">
-     	<form>
+     	<form action="/addCar" method="post">
      	<table>
      	<tr><th> Add Car:</th></tr>
 
-     	<tr><td>Select Car Class:</td><td> <select style="width:100px" name="carLocation" id="ddl" onchange="configureDropDownLists(this,document.getElementById('ddl2'))">
+     	<tr><td>Select Car Class:</td><td> <select style="width:100px" name="carClass" id="ddl" onchange="configureDropDownLists(this,document.getElementById('ddl2'))">
   <option value="#">------</option>
-  <option value="economy">Economy</option>
-  <option value="suv">SUV</option>
-  <option value="luxury">Luxury</option>
-  <option value="sporty">Sporty</option>
+  <option value="economy">Economy 10$/hr</option>
+  <option value="suv">SUV 12$/hr</option>
+  <option value="luxury">Luxury 18$/hr</option>
+  <option value="sporty">Sporty 20$/hr</option>
 	</select></td></tr>
 <tr><td> Select Car Brand and Model:</td><td>
-<select id="ddl2" style="width:100px">
+<select id="ddl2" name="CarName"="width:100px">
 </select>
 </td></tr>
 <tr><td>Enter Car Number:</td> <td> <input type="text" name="car_number" /> </td></tr>
@@ -112,7 +168,10 @@
   <option value="avalon">Avalon Mall</option>
   <option value="village">Village Mall</option>
 	</select> </td></tr>
+	<tr><td></td> <td align="right"> <input type="submit" value="Add Car"/></td></tr>
 </table>
+
+</form>
      	</div>     	
      </div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

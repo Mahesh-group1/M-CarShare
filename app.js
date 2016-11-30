@@ -9,14 +9,12 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , bodyParser = require('body-parser')
-  //, formidable = require("formidable")
   , util = require('util')
   , fs =require('fs'),
   Booking =require('./Booking.js'),
   Customer=require('./Customer.js'),
-  nodemailer = require('nodemailer');
-//var connect        = require('connect')
-//var methodOverride = require('method-override');
+  nodemailer = require('nodemailer'),
+  Cars = require('./Cars');
 var app = express();
 var transporter = nodemailer.createTransport('smtps://mcarshare6091%40gmail.com:"mcarshare"@smtp.gmail.com');
 
@@ -56,6 +54,10 @@ app.get('/addCar', function (req, res) {
 app.post('/login', function (req, res) {
 	var jsonData;
 	var chck=-1;
+	if (req.body.userid=='admin'){
+		res.render('adminHome');
+	}
+	else{
 	    fs.readFile(__dirname +'/public/login_details.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		   jsonData = JSON.parse(data);
@@ -101,7 +103,7 @@ app.post('/login', function (req, res) {
 	   
 	   console.log(req.body.userid);
 	   console.log(req.body.password);
-	   //res.end(JSON.stringify(response));
+	}
 	});
 
 app.get('/verify', function (req, res) {
@@ -222,6 +224,7 @@ app.post('/bookCar', function (req, res) {
 	var booking_Id;
 	var now = new Date();
 	var bookingDetails= new Booking(req.body.carLocation,-1, req.body.pickupDate, req.body.returnDate,now, req.body.userId, req.body.setCar, "Booked");
+	---------------
 	fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		  var bookingData = JSON.parse(data);
@@ -280,6 +283,62 @@ app.post('/tripDetails', function (req, res) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+app.get('/viewCars', function (req, res) {
+	var economy_cars =  [];
+	var suv_cars =  [];
+	var luxury_cars =  [];
+	var sporty_cars =  [];
+	fs.readFile(__dirname +'/public/cars.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		var saved_cars=JSON.parse(data);
+		for (var i = 0; i < saved_cars.length; ++i) {
+		    if (saved_cars[i].Car_Class=='economy'){
+		    	economy_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='suv'){
+		    	suv_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='luxury'){
+		    	luxury_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='sporty'){
+		    	sporty_cars.push(saved_cars[i]);
+		    }
+		}
+	res.render('addCar',{economy_cars: economy_cars,suv_cars:suv_cars,luxury_cars:luxury_cars,sporty_cars:sporty_cars});
+	});
+});
+
+app.post('/addCar', function (req, res) {
+	var economy_cars =  [];
+	var suv_cars =  [];
+	var luxury_cars =  [];
+	var sporty_cars =  [];
+	fs.readFile(__dirname +'/public/cars.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		var saved_cars=JSON.parse(data);
+		saved_cars.push({Car_Id: saved_cars.length+1, Car_Class:req.body.carClass, Car_Name:req.body.CarName, Car_Number:req.body.car_number, Car_Year:req.body.car_year,Car_Km:req.body.car_km,Car_Location:req.body.carLocation});
+		var json = JSON.stringify(saved_cars); 
+        fs.writeFile(__dirname +'/public/cars.json', json);
+		for (var i = 0; i < saved_cars.length; ++i) {
+		    if (saved_cars[i].Car_Class=='economy'){
+		    	economy_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='suv'){
+		    	suv_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='luxury'){
+		    	luxury_cars.push(saved_cars[i]);
+		    }
+		    if (saved_cars[i].Car_Class=='sporty'){
+		    	sporty_cars.push(saved_cars[i]);
+		    }
+		}
+	res.render('addCar',{economy_cars: economy_cars,suv_cars:suv_cars,luxury_cars:luxury_cars,sporty_cars:sporty_cars});
+	});
+});
+
 
 http.createServer(app).listen(3340, function(){
   console.log('Express server listening on port 3340');

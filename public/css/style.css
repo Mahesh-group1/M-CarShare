@@ -239,7 +239,8 @@ h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5
 #content #inside #left {
   float: left;
   width: 430px;
-  height: 430px
+  height: 430px;
+  overflow: auto;
 }
 
 
