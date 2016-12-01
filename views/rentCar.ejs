@@ -51,14 +51,14 @@ function showCars(num) {
 </script>
 <script>
    function selectCar(vr) {
-   document.getElementById('Honda_Fit').border="0";
-   document.getElementById('Audi_a3').border="0";
-   document.getElementById('explorer_suv').border="0";
+   document.getElementById('Honda Fit').border="0";
+   document.getElementById('Audi A3').border="0";
+   document.getElementById('Explorer').border="0";
    document.getElementById('Micra').border="0";
-   document.getElementById('porsche').border="0";
-   document.getElementById('prado').border="0";
-   document.getElementById('Dodge_Challenger').border="0";
-   document.getElementById('ferrari_italia').border="0";
+   document.getElementById('Porsche').border="0";
+   document.getElementById('Prado').border="0";
+   document.getElementById('Dodge').border="0";
+   document.getElementById('Ferrari Italia').border="0";
    vr.border="2";
    document.getElementById('setCar').value=vr.id;
    document.getElementById('submit').style.display="block";
@@ -75,11 +75,16 @@ function showCars(num) {
     <div id="navcontainer">
       <ul id="navlist">
         <li><form id="myform" method="post" action="/MyHome">
-   <input type="hidden" name="userId" value=<%= userId%> /> 
-  <input type="hidden" name="user" value=<%= user%> /> 
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+  <input type="hidden" name="user" value=<%= user%> />
   <a onclick="document.getElementById('myform').submit();">Home</a>
 </form></li>
-        <li><a href="#">Rent</a></li>	
+        <li><a href="#">Rent</a></li>
+        		<li><form id="myform4" method="post" action="/checkoutCar">
+  <input type="hidden" name="userId" value=<%= userId%> />
+  <input type="hidden" name="user" value=<%= user%> />  
+  <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
+  </form></li>	
 		<li><form id="myform2" method="post" action="/returnCar">
   <input type="hidden" name="userId" value=<%= userId%> /> 
   <input type="hidden" name="user" value=<%= user%> />
@@ -102,7 +107,7 @@ function showCars(num) {
     <div class="cf pick-up-location" data-reactid=".0.1.1.0.1.1.0">
    <div class="locationInput-active" data-reactid=".0.1.1.0.1.1.0.0">
    <label for="pickupLocationTextBox" class="location-input-label" data-reactid=".0.1.1.0.1.1.0.0.0">
-   <b style="color:#c0c0c0"><em>Select Location:</em></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="carLocation">
+   <b><em>Select Location:</em></b>&nbsp&nbsp<select name="carLocation">
   <option value="#">------</option>
   <option value="MUN">MUN</option>
   <option value="Avalon Mall">Avalon Mall</option>
@@ -111,11 +116,11 @@ function showCars(num) {
 	</div>
 	</div> 
 <br>  
-   <p><b style="color:#c0c0c0">Pick-Up Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="datetime-local" id="myDate" name="pickupDate"/> </p>
-<p><b style="color:#c0c0c0">Return Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="datetime-local" id="myDate" name="returnDate"/> </p>
+   <p><b>Pick-Up Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="datetime-local" id="myDate" name="pickupDate"/> </p>
+<p><b>Return Date:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="datetime-local" id="myDate" name="returnDate"/> </p>
 
    
-   <h2 style="color:#c0c0c0"><b><em>CHOOSE VEHICLE CLASS</em></b></h2>
+   <h2 ><b><em>CHOOSE VEHICLE CLASS</em></b></h2>
    <div>
 <ul class="content">
 				    <!--eqblock-->
@@ -125,7 +130,6 @@ function showCars(num) {
 										<h2><a  onclick=showCars(1)>Economy</a></h2> 
 										<p>Kia Rio or similar</p>
 										<p>Rates per day: <b style="color:#FF0000">CAD 10</b></p>
-										
 				        </section>
 				    </li>
 
@@ -162,18 +166,18 @@ function showCars(num) {
 			
 		</div>	
 			<div class='cars' style="display: none" id="economy">
-			<h2 style="color:#c0c0c0;text-align:center">SELECT A CAR</h2>
+			<h2 style="font-color: #c0c0c0;">Select the Car:</h2><br>
 		<table align="center">
 				    <!--eqblock-->
 					<tr >
-				    <td><section class="block"> <img id="Honda_Fit" src="css/images/Honda_Fit.jpg"  onclick=selectCar(this) /> 
+				    <td><section class="block"> <img id="Honda Fit" src="css/images/Honda_Fit.jpg"  onclick=selectCar(this) /> 
 										<h2><a >Honda Fit</a></h2></section>
 										
 				    </td>
 
 				    <!--eqblock-->
 				    <td><section class="block"> <img id="Micra" src="css/images/Micra.png"  onclick=selectCar(this) /> 
-										<h2><a >Nissan Micra</a></h2></section>									
+										<h2><a >Micra</a></h2></section>									
 				    </td>
 					</tr>
 				
@@ -181,48 +185,48 @@ function showCars(num) {
 			</div>
 			
 					<div class='cars' style="display: none" id="suv">
-								<h2 style="color:#c0c0c0;text-align:center">SELECT A CAR</h2>
+								<h2 style="color:black">Select the Car</h2>:<br>
 		<table  align="center">
 				    <tr>
-				    <td><section class="block"><img id="prado" src="css/images/prado.png" onclick=selectCar(this) /> 
-										<h2><a>Toyota Prado</a></h2></section>
+				    <td><section class="block"><img id="Prado" src="css/images/prado.png" onclick=selectCar(this) /> 
+										<h2><a >Prado</a></h2></section>
 				    </td>
 
 				    <!--eqblock-->
-				    <td><section class="block"><img id="explorer_suv" src="css/images/explorer_suv.jpg" onclick=selectCar(this)  /> 
-										<h2><a>Ford Explorer</a></h2> </section>									
+				    <td><section class="block"><img id="Explorer" src="css/images/explorer_suv.jpg" onclick=selectCar(this)  /> 
+										<h2><a >Explorer</a></h2> </section>									
 				    </td>
 				</tr>
 			</table>
 			</div>
 			
 					<div class='cars' style="display: none" id="luxury">
-					<h2 style="color:#c0c0c0;text-align:center">SELECT A CAR</h2>
+					<h2 style="color:black">Select the Car</h2>:<br>
 		<table  align="center">
 				    <tr>
-				    <td><section class="block"><img id="Audi_a3"src="css/images/Audi_a3.jpg" onclick=selectCar(this) /> 
+				    <td><section class="block"><img id="Audi A3"src="css/images/Audi_a3.jpg" onclick=selectCar(this) /> 
 										<h2><a >Audi A3</a></h2></section>
 				    </td>
 
 				    <!--eqblock-->
-				    <td><section class="block"><img id="porsche"src="css/images/porsche.png" onclick=selectCar(this)  /> 
-										<h2><a >Porsche Cayman</a></h2></section> 									
+				    <td><section class="block"><img id="Porsche"src="css/images/porsche.png" onclick=selectCar(this)  /> 
+										<h2><a >Porsche</a></h2></section> 									
 				    </td>
 				</tr>
 			</table>
 			</div>
 			
 					<div class='cars' style="display: none" id="sporty">
-					<h2 style="color:#c0c0c0;text-align:center">SELECT A CAR</h2>
+					<h2 style="color:black">Select the Car</h2>:<br>
 		<table  align="center">
 				    <tr>
-				    <td><section class="block"><img id="ferrari_italia" src="css/images/ferrari_italia.jpg" onclick=selectCar(this) /> 
+				    <td><section class="block"><img id="Ferrari Italia" src="css/images/ferrari_italia.jpg" onclick=selectCar(this) /> 
 										<h2><a >Ferrari Italia</a></h2></section>
 				    </td>
 
 				    <!--eqblock-->
-				    <td><section class="block"><img id="Dodge_Challenger" src="css/images/Dodge_Challenger.jpg" onclick=selectCar(this)  /> 
-										<h2><a >Aston Martin Vanquish</a></h2></section> 									
+				    <td><section class="block"><img id="Dodge" src="css/images/Dodge_Challenger.jpg" onclick=selectCar(this)  /> 
+										<h2><a >Dodge</a></h2></section> 									
 				    </td>
 				</tr>
 			</table>

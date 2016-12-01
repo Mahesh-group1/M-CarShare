@@ -172,10 +172,10 @@ app.post('/signup', function (req, res) {
     }
     console.log('Message sent: ' + info.response);
 });
-	    	//res.render('MyHome',{user: req.body.first_name,userId:req.body.email_id});
+	    	res.render('userCreated');
 	        
 	        
-	        res.end('User Id created. Verify your email id from the mail sent.');
+	        //res.end('User Id created. Verify your email id from the mail sent.');
 		  }
 	  else {
 		  res.end('User Id already exist');
@@ -200,6 +200,7 @@ app.post('/rent_car', function (req, res) {
 
 app.post('/myAccount', function (req, res) {
 	var userObj =  [];
+	var rented_cars =[];
 	var indx;
 	console.log("userId: "+req.body.userId);
 	fs.readFile(__dirname +'/public/user_details.json', 'utf8', function (err, data) {
@@ -213,11 +214,19 @@ app.post('/myAccount', function (req, res) {
 		    }
 		}
 		 var custDetails =new Customer(userObj[indx].user_id, userObj[indx].first_name,userObj[indx].last_name,userObj[indx].address,userObj[indx].phone,userObj[indx].user_id); 
-
+		 fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
+				if (err) throw err;
+				var bookings=JSON.parse(data);
+			for (var i = 0; i < bookings.length; ++i) {
+			    if (bookings[i].userId==req.body.userId){
+			    	console.log(bookings[i].userId);
+			    	rented_cars.push(bookings[i]);		    	
+			    }
+			  }
 			
-			res.render('MyAccount', {custDetails:custDetails});
+			res.render('MyAccount', {custDetails:custDetails, bookingDetails:rented_cars});
 	});
-
+	});
 	});
 
 app.post('/bookCar', function (req, res) {
@@ -230,7 +239,6 @@ app.post('/bookCar', function (req, res) {
 		  booking_Id=bookingData.length+1;
 		  bookingDetails.setBookingId(booking_Id);
 		  bookingData.push({Booking_Id: bookingDetails.getBookingId(),userId:bookingDetails.getUser(), Pickup_location: bookingDetails.getLocation(), Pickup_date:bookingDetails.getBookingDate(), Return_Date: bookingDetails.getReturnDate(), car: bookingDetails.getCar(), booking_time:bookingDetails.getBookingTime(),status:bookingDetails.getStatus()});
-		  console.log(req.body.carLocation+-1+ req.body.pickupDate+ req.body.returnDate+now+ req.body.userId+ req.body.setCar+ "Booked");
 		  var json = JSON.stringify(bookingData); 
 	        fs.writeFile(__dirname +'/public/bookingDetails.json', json);
 	        console.log("booking_Id: " + booking_Id);
@@ -253,7 +261,6 @@ app.post('/returnCar', function (req, res) {
 	    	rented_cars.push(bookings[i]);		    	
 	    }
 	  }
-	console.log('rented_cars.length: '+ rented_cars.length);
 	res.render('returnCar', {bookings:rented_cars,numbrs:rented_cars.length,user:req.body.user,userId:req.body.userId});
 	});
 });
@@ -279,7 +286,7 @@ app.post('/tripDetails', function (req, res) {
 		car_dtls=JSON.parse(data);
 		var car_class ;
 		var total_amt;
-		var fuel_charge;
+		var fuel_charge=0;
 		for (var i = 0; i < car_dtls.length; ++i) {
 		    if (car_dtls[i].Car_Id==rented_cars.car){
 		    	car_class=car_dtls[i].Car_Class;
@@ -306,7 +313,7 @@ app.post('/tripDetails', function (req, res) {
 			  fuel_charge=(fuel/4);
 		  }
 		  console.log('total_amt: '+ total_amt);
-		res.render('trip_details', {trp_dtls:Car_name,total_kms:kms,fuel_cnsmd:fuel, no_of_days:noDays,userId:req.body.userId,user:req.body.user,total_amt:total_amt,fuel_charge:fuel_charge,bookingId:req.body.bookingId});
+		res.render('trip_details', {trp_dtls:Car_name,total_kms:kms,fuel_cnsmd:fuel, no_of_days:noDays,userId:req.body.userId,user:req.body.user,total_amt:total_amt,fuel_charge:fuel_charge,bookingId:req.body.bookingId,dropLocation:req.body.carLocation,car_id:rented_cars.car});
 		});
 });
 });
@@ -369,6 +376,91 @@ app.post('/addCar', function (req, res) {
 	});
 });
 
+
+app.post('/tripPay', function (req, res) {
+	var indx;
+	var indx2;
+	fs.readFile(__dirname +'/public/cars.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		carObj = JSON.parse(data);
+		for (var i = 0; i < carObj.length; ++i) {
+		    if (carObj[i].Car_Id==req.body.car_id){
+		    	indx=i;
+		    	break;
+		    }
+		}
+		carObj[indx].Car_Location=req.body.dropLocation;
+		var json = JSON.stringify(carObj); 
+        fs.writeFile(__dirname +'/public/cars.json', json);
+	});
+	fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		bookingObj = JSON.parse(data);
+		for (var i = 0; i < bookingObj.length; ++i) {
+		    if (bookingObj[i].Booking_Id==req.body.bookingId){
+		    	indx2=i;
+		    	break;
+		    }
+		}
+		bookingObj[indx2].status="Completed";
+		var json = JSON.stringify(bookingObj); 
+        fs.writeFile(__dirname +'/public/bookingDetails.json', json);
+	});
+		res.render('tripFinal',{user:req.body.user,userId: req.body.userId});
+});
+
+app.post('/checkedOut', function (req, res) {
+	var carsData =  [];
+	var bookings =  [];
+	var indx;
+	var indx2;
+	var now = new Date();
+	fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		bookings=JSON.parse(data);
+	for (var i = 0; i < bookings.length; ++i) {
+	    if (bookings[i].Booking_Id==req.body.bookingId){
+	    	indx=i;	
+	    	break;
+	    }
+	  }
+	 bookings[indx].status="Checked Out";
+	 fs.readFile(__dirname +'/public/cars.json', 'utf8', function (err, data) {
+			if (err) throw err;
+			carsData=JSON.parse(data);
+			for (var i = 0; i < carsData.length; ++i) {
+			    if (carsData[i].Car_Name==bookings[indx].car){
+			    	indx2=i;	
+			    	break;
+			    }
+			  }
+			bookings[indx].car=carsData[indx2].Car_Id;
+			var json = JSON.stringify(bookings); 
+			fs.writeFile(__dirname +'/public/bookingDetails.json', json);
+	res.render('checkoutConfirm',{checkOut_time:now,car_model:carsData[indx2].Car_Name,car_number:carsData[indx2].Car_Number,start_km:carsData[indx2].Car_Km,user:req.body.user,userId:req.body.userId});
+	 });
+	});
+	
+	});
+	
+app.post('/checkoutCar', function (req, res) {
+		var rented_cars =  [];
+		var bookings =  [];
+		var no_of_bookings;
+		fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
+			if (err) throw err;
+			bookings=JSON.parse(data);
+			console.log('req.body.userid'+ req.body.userId);
+		for (var i = 0; i < bookings.length; ++i) {
+		    if (bookings[i].userId==req.body.userId &&  bookings[i].status=='Booked'){
+		    	console.log(bookings[i].userId);
+		    	rented_cars.push(bookings[i]);		    	
+		    }
+		  }
+		
+		res.render('checkout',{bookings:rented_cars,numbrs:rented_cars.length,user:req.body.user,userId:req.body.userId});
+		});
+});
 
 http.createServer(app).listen(3340, function(){
   console.log('Express server listening on port 3340');

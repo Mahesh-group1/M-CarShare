@@ -18,7 +18,7 @@ body {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
+    z-index: 1; /* Sit on top */
     padding-top: 100px; /* LocationLocation of the box */
     left: 0;
     top: 0;
@@ -231,6 +231,7 @@ h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5
   clear:both;
   text-align: left;
   padding-left: 35px;
+  color: #c0c0c0;
  // background: #004A80 url('images/car1.jpg');
 }
 
@@ -239,11 +240,16 @@ h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5
   text-align: left;
 }
 
+
 #content #inside #left {
   float: left;
   width: 430px;
   height: 430px;
   overflow: auto;
+}
+
+#content #inside #left .ul{
+  color : #c0c0c0;
 }
 
 
@@ -252,7 +258,6 @@ h5 { font-size: 12px; color: #003366; margin:0px; padding: 0px; margin-bottom: 5
   float:left;
   width: 430px;
 }
-
 #footer {
   width: 1000px;
   height: 80px;

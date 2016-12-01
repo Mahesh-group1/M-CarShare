@@ -81,11 +81,11 @@
 		   <% for (var i = 0; i < economy_cars.length; ++i) { %>
 		   <li>
 		   	  <ul> 
-		      <li style="list-style-type: none;">Car Brand and Model: <%= economy_cars[i].Car_Name %></li>
-		   		<li style="list-style-type: none;">Car Number: <%= economy_cars[i].Car_Number %></li>
-		   		<li style="list-style-type: none;">Car Year: <%= economy_cars[i].Car_Year %></li>
-		   		<li style="list-style-type: none;">Car Km: <%= economy_cars[i].Car_Km %></li>
-		   		<li style="list-style-type: none;">Car Location:<%= economy_cars[i].Car_Location %></p>
+		      <li style="list-style-type: none; color:#c0c0c0">Car Brand and Model: <%= economy_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Number: <%= economy_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Year: <%= economy_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Km: <%= economy_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Location:<%= economy_cars[i].Car_Location %></p>
 		   		</ul>
 		   	</li>
 		   	
@@ -97,11 +97,11 @@
 		   <% for (var i = 0; i < suv_cars.length; ++i) { %>
 		   <li>
 		   	  <ul> 
-		      <li style="list-style-type: none;">Car Brand and Model: <%= suv_cars[i].Car_Name %></li>
-		   		<li style="list-style-type: none;">Car Number: <%= suv_cars[i].Car_Number %></li>
-		   		<li style="list-style-type: none;">Car Year: <%= suv_cars[i].Car_Year %></li>
-		   		<li style="list-style-type: none;">Car Km: <%= suv_cars[i].Car_Km %></li>
-		   		<li style="list-style-type: none;">Car Location:<%= suv_cars[i].Car_Location %></p>
+		      <li style="list-style-type: none; color:#c0c0c0">Car Brand and Model: <%= suv_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Number: <%= suv_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Year: <%= suv_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Km: <%= suv_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Location:<%= suv_cars[i].Car_Location %></p>
 		   		</ul>
 		   	</li>
 		   	
@@ -114,11 +114,11 @@
 		   <% for (var i = 0; i < luxury_cars.length; ++i) { %>
 		   <li>
 		   	  <ul> 
-		      <li style="list-style-type: none;">Car Brand and Model: <%= luxury_cars[i].Car_Name %></li>
-		   		<li style="list-style-type: none;">Car Number: <%= luxury_cars[i].Car_Number %></li>
-		   		<li style="list-style-type: none;">Car Year: <%= luxury_cars[i].Car_Year %></li>
-		   		<li style="list-style-type: none;">Car Km: <%= luxury_cars[i].Car_Km %></li>
-		   		<li style="list-style-type: none;">Car Location:<%= luxury_cars[i].Car_Location %></p>
+		      <li style="list-style-type: none; color:#c0c0c0">Car Brand and Model: <%= luxury_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Number: <%= luxury_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Year: <%= luxury_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Km: <%= luxury_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Location:<%= luxury_cars[i].Car_Location %></p>
 		   		</ul>
 		   	</li>
 		   	
@@ -131,11 +131,11 @@
 		   <% for (var i = 0; i < sporty_cars.length; ++i) { %>
 		   <li>
 		   	  <ul> 
-		      <li style="list-style-type: none;">Car Brand and Model: <%= sporty_cars[i].Car_Name %></li>
-		   		<li style="list-style-type: none;">Car Number: <%= sporty_cars[i].Car_Number %></li>
-		   		<li style="list-style-type: none;">Car Year: <%= sporty_cars[i].Car_Year %></li>
-		   		<li style="list-style-type: none;">Car Km: <%= sporty_cars[i].Car_Km %></li>
-		   		<li style="list-style-type: none;">Car Location:<%= sporty_cars[i].Car_Location %></p>
+		      <li style="list-style-type: none; color:#c0c0c0">Car Brand and Model: <%= sporty_cars[i].Car_Name %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Number: <%= sporty_cars[i].Car_Number %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Year: <%= sporty_cars[i].Car_Year %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Km: <%= sporty_cars[i].Car_Km %></li>
+		   		<li style="list-style-type: none; color:#c0c0c0">Car Location:<%= sporty_cars[i].Car_Location %></p>
 		   		</ul>
 		   	</li>
 		   	
@@ -164,9 +164,9 @@
 <tr><td> KM Driven:</td> <td> <input type="number" name="car_km" /> </td></tr>
 <tr><td> Select Car location:</td> <td> <select name="carLocation">
   <option value="#">------</option>
-  <option value="MUN">MUN</option>
-  <option value="Avalon Mall">Avalon Mall</option>
-  <option value="Village Mall">Village Mall</option>
+  <option value="mun">MUN</option>
+  <option value="avalon">Avalon Mall</option>
+  <option value="village">Village Mall</option>
 	</select> </td></tr>
 	<tr><td></td> <td align="right"> <input type="submit" value="Add Car"/></td></tr>
 </table>

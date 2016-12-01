@@ -26,6 +26,11 @@
   <input type="hidden" name="user" value=<%= user%> />
   <a href="#" onclick="document.getElementById('myform1').submit();">Rent</a>
 </form></li>
+		<li><form id="myform4" method="post" action="/checkoutCar">
+  <input type="hidden" name="userId" value=<%= userId%> />
+  <input type="hidden" name="user" value=<%= user%> />  
+  <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
+  </form></li>
 		<li><form id="myform2" method="post" action="/returnCar">
   <input type="hidden" name="userId" value=<%= userId%> /> 
   <input type="hidden" name="user" value=<%= user%> />
@@ -44,6 +49,7 @@
    <div id="content">
           <p style="font-size:20px;"> Trip Details:</p>
 <ul style="list-style: none;">
+	<form method="post" action="/tripPay">
 	  <li style="align: left">Booked Car: <%= trp_dtls %></li>
       <li style="align: left">No. of Days booked: &nbsp <%= no_of_days %></li>
       <li style="align: left">Kms Driven: <%= total_kms %>	  </li>
@@ -52,6 +58,14 @@
       <li style="align: left">Fuel Surcharge: <%= fuel_charge %>
       <li style="align: left">Total Amout to be Paid: $<%= total_amt+fuel_charge %>
 	  </ul> 
+	  <input type="hidden" name="car_id" value=<%= car_id%>  />
+	  <input type="hidden" name="dropLocation" value=<%= dropLocation%>  />
+	  <input type="hidden" name="bookingId" value=<%= bookingId%>  />
+	    <input type="hidden" name="userId" value=<%= userId%> /> 
+  		<input type="hidden" name="user" value=<%= user%> />
+	  <input id="submit" type="submit" value="Make Payment"  />
+	  </form>
+	  
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>

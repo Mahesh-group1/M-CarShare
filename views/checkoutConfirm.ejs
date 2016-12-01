@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Home-Mcar</title>
+<title>Mcar</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
-
 
 <body>
 <div id="wrapper">
@@ -16,11 +15,15 @@
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="#">Home</a></li>
-        <li><form id="myform" method="post" action="/rent_car">
-  <input type="hidden" name="userId" value=<%= userId%> />
-  <input type="hidden" name="user" value=<%= user%> /> 
-  <a href="#" onclick="document.getElementById('myform').submit();">Rent</a>
+        <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
+        <li><form id="myform1" method="post" action="/rent_car">
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
+  <a href="#" onclick="document.getElementById('myform1').submit();">Rent</a>
 </form></li>
 		<li><form id="myform4" method="post" action="/checkoutCar">
   <input type="hidden" name="userId" value=<%= userId%> />
@@ -28,13 +31,13 @@
   <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
   </form></li>
 		<li><form id="myform2" method="post" action="/returnCar">
-  <input type="hidden" name="userId" value=<%= userId%> />
-  <input type="hidden" name="user" value=<%= user%> />  
+  <input type="hidden" name="userId" value=<%= userId%> /> 
+    <input type="hidden" name="user" value=<%= user%> />
   <a  href="#" onclick="document.getElementById('myform2').submit();">Return Car</a>
 </form></li>
 		<li><form id="myform3" method="post" action="/myAccount">
   <input type="hidden" name="userId" value=<%= userId%> /> 
-  <input type="hidden" name="user" value=<%= user%> />
+    <input type="hidden" name="user" value=<%= user%> />
   <a href="#" onclick="document.getElementById('myform3').submit();">My Account</a>
 </form></li>
         <li ><a href="#">About Us</a></li>
@@ -43,8 +46,17 @@
 	</div>
   </div>
    <div id="content">
-     <p style="font-size:20px;"> Hi <%= user %>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+   
+   <p style="font-size:20px;"> Your Checkout Details </p>
+
+<ul style="list-style: none;">
+	  <li style="align: left; color: #c0c0c0;">Car Model: <%= car_model %></li>
+      <li style="align: left; color: #c0c0c0;">Car Number: &nbsp <%= car_number %></li>
+      <li style="align: left color: #c0c0c0;">Check out Time: <%= checkOut_time %>	  </li>
+      <li style="align: left color: #c0c0c0;">Car Km entry at checkout: <%=start_km %>	  </li>
+	  </ul>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>
   <div id="footer">

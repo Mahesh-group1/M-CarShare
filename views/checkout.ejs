@@ -5,7 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
-
+<script>
+function  getId(element) {
+    document.getElementById('bookingId').value=element.parentNode.parentNode.cells[0].innerHTML;
+    document.getElementById('checkoutForm').submit()
+}
+</script>
 
 <body>
 <div id="wrapper">
@@ -16,16 +21,17 @@
   <div id="menu">
     <div id="navcontainer">
       <ul id="navlist">
-        <li><a href="#">Home</a></li>
+        <li><form id="myform" method="post" action="/MyHome">
+  <input type="hidden" name="userId" value=<%= userId%> />
+  <input type="hidden" name="user" value=<%= user%> /> 
+  <a href="#" onclick="document.getElementById('myform').submit();">Home</a>
+</form></li>
         <li><form id="myform" method="post" action="/rent_car">
   <input type="hidden" name="userId" value=<%= userId%> />
   <input type="hidden" name="user" value=<%= user%> /> 
   <a href="#" onclick="document.getElementById('myform').submit();">Rent</a>
 </form></li>
-		<li><form id="myform4" method="post" action="/checkoutCar">
-  <input type="hidden" name="userId" value=<%= userId%> />
-  <input type="hidden" name="user" value=<%= user%> />  
-  <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
+		<li><a  href="#"">Checkout Car</a>
   </form></li>
 		<li><form id="myform2" method="post" action="/returnCar">
   <input type="hidden" name="userId" value=<%= userId%> />
@@ -43,7 +49,38 @@
 	</div>
   </div>
    <div id="content">
-     <p style="font-size:20px;"> Hi <%= user %>
+     <% if (numbrs==0){ %>
+   <p style="font-size:20px;"> No Bookings made. Please make bookings to checkout a car.</p>
+   
+   <% } else { %>
+   <form id="checkoutForm" method="post" action="/checkedOut">
+       <input type="hidden" name="bookingId" id="bookingId" value="123"/>
+       <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+       <input type = "text" name="user" value= <%= user%> style="display: none"/>
+       
+    </form>
+   
+   <TABLE id="thetable" width="350px" border="1"> 
+  	<TR>
+  	<th>Pick-up Location</th>  <th>Pickup Date</th> <th>Return Date</th> <th>Booked Car</th> <th>Booking Time </th> 
+  	</tr>
+       
+	   <% for (var i = 0; i < bookings.length; ++i) {  %>
+  	<TR>
+  	 
+  	<TD style="display:none"><%=bookings[i].Booking_Id %></TD>
+  	<TD><%=bookings[i].Pickup_location %></TD>
+  	<TD><%=bookings[i].Pickup_date%></TD>
+  	<TD><%=bookings[i].Return_Date%></TD>
+  	<TD><%=bookings[i].car%></TD>
+  	<TD><%=bookings[i].booking_time%></TD>
+	<TD><input type="submit" value="Submit" onclick="getId(this)" /></TD>
+  	</TR>
+  	
+  	
+  	<% } %>
+	</TABLE>
+  	<% } %> 
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>

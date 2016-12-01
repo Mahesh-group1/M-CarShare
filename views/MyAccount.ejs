@@ -26,6 +26,11 @@
   <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> /> 
   <a href="#" onclick="document.getElementById('myform2').submit();">Rent</a>
 </form></li>
+		<li><form id="myform4" method="post" action="/checkoutCar">
+  <input type="hidden" name="userId" value=<%= custDetails.getUserName()%> />
+  <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> />  
+  <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
+  </form></li>
 		<li><form id="myform3" method="post" action="/returnCar">
   <input type="hidden" name="userId" value=<%= custDetails.getUserName()%> />
   <input type="hidden" name="user" value=<%= custDetails.getFirstName()%> /> 
@@ -45,7 +50,26 @@
       <li style="list-style-type: none;">Phone: <%= custDetails.getPhone() %>	  </li>
       <li style="list-style-type: none;">Address: <%= custDetails.getAddress() %>	  </li>
 	  </ul>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<TABLE id="thetable" width="350px" border="1"> 
+  	<TR>
+  	<th>Pick-up Location</th>  <th>Pickup Date</th> <th>Return Date</th> <th>Booked Car</th> <th>Booking Time </th> <th>Booking Status</th>
+  	</tr>
+
+	   <% for (var i = 0; i < bookingDetails.length; ++i) {  %>
+  	<TR> 
+  	<TD style="display:none"><%=bookingDetails[i].Booking_Id %></TD>
+  	<TD><%=bookingDetails[i].Pickup_location %></TD>
+  	<TD><%=bookingDetails[i].Pickup_date%></TD>
+  	<TD><%=bookingDetails[i].Return_Date%></TD>
+  	<TD><%=bookingDetails[i].car%></TD>
+  	<TD><%=bookingDetails[i].booking_time%></TD>
+  	<TD><%=bookingDetails[i].status</TD>
+	
+  	</TR>
+ 
+  	
+  	<% } %>
+	</TABLE><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
   </div>
   <div id="footer">

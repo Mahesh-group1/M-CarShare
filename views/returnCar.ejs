@@ -7,9 +7,8 @@
 </head>
 <script>
 function  getId(element) {
-    alert("row" + element.parentNode.parentNode.rowIndex + 
-    " - column" + element.parentNode.cellIndex + " - data" + element.parentNode.parentNode.cells[0].innerHTML);
     document.getElementById('bookingId').value=element.parentNode.parentNode.cells[0].innerHTML;
+    document.getElementById('returnForm').submit();
 }
 </script>
 
@@ -32,8 +31,12 @@ function  getId(element) {
     <input type="hidden" name="user" value=<%= user%> /> 
   <a href="#" onclick="document.getElementById('myform2').submit();">Rent</a>
 </form></li>
-		<li><a href="#">Return Car</a>
-</form></li>
+		<li><form id="myform4" method="post" action="/checkoutCar">
+  <input type="hidden" name="userId" value=<%= userId%> />
+  <input type="hidden" name="user" value=<%= user%> />  
+  <a  href="#" onclick="document.getElementById('myform4').submit();">Checkout Car</a>
+  </form></li>
+		<li><a href="#">Return Car</a></li>
 		<li><form id="myform3" method="post" action="/myAccount">
   <input type="hidden" name="userId" value=<%= userId%> /> 
     <input type="hidden" name="user" value=<%= user%> />
@@ -50,14 +53,16 @@ function  getId(element) {
    <p style="font-size:20px;"> No car to return. Make a booking and then check out before you can return a Car</p>
    
    <% } else { %>
+          <form id="returnForm" method="post" action="/tripDetails">
+       <input type="hidden" name="bookingId" id="bookingId" value="123"/>
+       <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
+       <input type = "text" name="user" value= <%= user%> style="display: none"/>
+      	</form>
    <TABLE id="thetable" width="350px" border="1"> 
   	<TR>
   	<th>Pick-up Location</th>  <th>Pickup Date</th> <th>Return Date</th> <th>Booked Car</th> <th>Booking Time </th> <th>Location to Drop</th>
   	</tr>
-       <form method="post" action="/tripDetails">
-       <input type="hidden" name="bookingId" id="bookingId" value="123"/>
-       <input type = "text" name="userId" value= <%= userId%> style="display: none"/>
-       <input type = "text" name="user" value= <%= user%> style="display: none"/>
+
 	   <% for (var i = 0; i < bookings.length; ++i) {  %>
   	<TR> 
   	<TD style="display:none"><%=bookings[i].Booking_Id %></TD>
@@ -68,14 +73,14 @@ function  getId(element) {
   	<TD><%=bookings[i].booking_time%></TD>
   	<TD><select name="carLocation">
   <option value="#">------</option>
-  <option value="mun">MUN</option>
-  <option value="avalon">Avalon Mall</option>
-  <option value="village">Village Mall</option>
+  <option value="MUN">MUN</option>
+  <option value="Avalon Mall">Avalon Mall</option>
+  <option value="Village Mall">Village Mall</option>
 	</select></TD>
 	<TD><input type="submit" value="Submit" onclick="getId(this)"/></TD>
 	
   	</TR>
-  	<form>
+ 
   	
   	<% } %>
 	</TABLE>
