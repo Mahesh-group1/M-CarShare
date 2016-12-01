@@ -5,7 +5,7 @@ function Cars(CarId, CarClass, CarName, CarNumber, CarYear, CarKm, CarLocation){
 	this._CarNumber=CarNumber;
 	this._CarYear=CarYear;
 	this._CarKm=CarKm;
-	this._CarLocation=CarLocation;
+	this._CarLocation=CarLocation; 
 }
 
 Cars.prototype.getCarId=function(){

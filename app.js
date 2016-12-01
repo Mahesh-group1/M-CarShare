@@ -172,7 +172,7 @@ app.post('/signup', function (req, res) {
     }
     console.log('Message sent: ' + info.response);
 });
-	    	res.render('userCreated');
+	    	res.render('userCreated' );
 	        
 	        
 	        //res.end('User Id created. Verify your email id from the mail sent.');

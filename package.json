@@ -11,6 +11,6 @@
     	"express": "4.8.*",
     	"method-override":"*",
     	"body-parser": "1.8",
-    	"ejs": "~0.7.1"
+    	"ejs": "~0.7.1" 
   }
 }

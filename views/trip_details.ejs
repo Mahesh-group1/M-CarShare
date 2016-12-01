@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Home-Mcar</title>
@@ -50,13 +50,13 @@
           <p style="font-size:20px;"> Trip Details:</p>
 <ul style="list-style: none;">
 	<form method="post" action="/tripPay">
-	  <li style="align: left">Booked Car: <%= trp_dtls %></li>
-      <li style="align: left">No. of Days booked: &nbsp <%= no_of_days %></li>
-      <li style="align: left">Kms Driven: <%= total_kms %>	  </li>
-      <li style="align: left">Fuel Consumed: <%= fuel_cnsmd %>%	  </li>
-      <li style="align: left">Booking Amount: <%= total_amt %>
-      <li style="align: left">Fuel Surcharge: <%= fuel_charge %>
-      <li style="align: left">Total Amout to be Paid: $<%= total_amt+fuel_charge %>
+	  <li style="align: left;color:#c0c0c0">Booked Car: <%= trp_dtls %></li>
+      <li style="align: left;color:#c0c0c0">No. of Days booked: &nbsp <%= no_of_days %></li>
+      <li style="align: left;color:#c0c0c0">Kms Driven: <%= total_kms %>	  </li>
+      <li style="align: left;color:#c0c0c0">Fuel Consumed: <%= fuel_cnsmd %>%	  </li>
+      <li style="align: left;color:#c0c0c0">Booking Amount: <%= total_amt %>
+      <li style="align: left;color:#c0c0c0">Fuel Surcharge: <%= fuel_charge %>
+      <li style="align: left;color:#c0c0c0">Total Amout to be Paid: $<%= total_amt+fuel_charge %>
 	  </ul> 
 	  <input type="hidden" name="car_id" value=<%= car_id%>  />
 	  <input type="hidden" name="dropLocation" value=<%= dropLocation%>  />

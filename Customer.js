@@ -5,7 +5,7 @@ function Customer(UserName, fName,lName, Address, Phone, Email){
 	this._Address=Address;
 	this._Phone=Phone;
 	this._Email=Email;
-
+ 
 }
 
 Customer.prototype.getUserName=function(){

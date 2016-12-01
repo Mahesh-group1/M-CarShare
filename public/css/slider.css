@@ -3,7 +3,7 @@
 .slider-block {width:1066px; position:absolute; left:50%; margin-left:-533px;}
 .slider { width:960px; height:400px; margin:0 auto;}
 .items { display:none;}
-
+ 
 .pagination { display:none;}
 
 .banner {background:url('images/banner.png') 0 0 repeat; position:absolute; z-index:100; top:0px; left:690px; width:270px; height:400px; font-size:11px; line-height:22px; color:#000; font-family:Arial, Helvetica, sans-serif; }

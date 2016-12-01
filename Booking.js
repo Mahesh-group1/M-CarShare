@@ -8,7 +8,7 @@ function Booking(Location, BookingId, BookingDate, ReturnDate, BookingTime, User
 	this._BookingTime=BookingTime;
 	this._User=User;
 	this._Car=Car;
-	this._Status=Status;
+	this._Status=Status; 
 }
 
 Booking.prototype.getBookingId=function(){
