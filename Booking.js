@@ -1,6 +1,6 @@
 //var method= new Booking.prototype;
 
-function Booking(Location, BookingId, BookingDate, ReturnDate, BookingTime, User, Car){
+function Booking(Location, BookingId, BookingDate, ReturnDate, BookingTime, User, Car,Status){
 	this._Location=Location;
 	this._BookingId=BookingId;
 	this._BookingDate=BookingDate;

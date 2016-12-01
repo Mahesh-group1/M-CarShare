@@ -224,19 +224,20 @@ app.post('/bookCar', function (req, res) {
 	var booking_Id;
 	var now = new Date();
 	var bookingDetails= new Booking(req.body.carLocation,-1, req.body.pickupDate, req.body.returnDate,now, req.body.userId, req.body.setCar, "Booked");
-	---------------
 	fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		  var bookingData = JSON.parse(data);
 		  booking_Id=bookingData.length+1;
 		  bookingDetails.setBookingId(booking_Id);
 		  bookingData.push({Booking_Id: bookingDetails.getBookingId(),userId:bookingDetails.getUser(), Pickup_location: bookingDetails.getLocation(), Pickup_date:bookingDetails.getBookingDate(), Return_Date: bookingDetails.getReturnDate(), car: bookingDetails.getCar(), booking_time:bookingDetails.getBookingTime(),status:bookingDetails.getStatus()});
+		  console.log(req.body.carLocation+-1+ req.body.pickupDate+ req.body.returnDate+now+ req.body.userId+ req.body.setCar+ "Booked");
 		  var json = JSON.stringify(bookingData); 
 	        fs.writeFile(__dirname +'/public/bookingDetails.json', json);
 	        console.log("booking_Id: " + booking_Id);
 	    	res.render('confirm', {booking_dtls:bookingDetails,user:req.body.user,userId:req.body.userId});
 		});
 	});
+
 
 app.post('/returnCar', function (req, res) {
 	var rented_cars =  [];
@@ -262,6 +263,7 @@ app.post('/tripDetails', function (req, res) {
 	var bookings =  [];
 	var kms= Math.floor((Math.random() * 1000) + 1);
 	var fuel= Math.floor((Math.random() * 100) + 1);
+	var Car_name;
 	fs.readFile(__dirname +'/public/bookingDetails.json', 'utf8', function (err, data) {
 		if (err) throw err;
 		bookings=JSON.parse(data);
@@ -272,13 +274,41 @@ app.post('/tripDetails', function (req, res) {
 	    	break;
 	    }
 	  }
-	console.log('rented_cars: '+ rented_cars);
-	var date1_ms =new Date(rented_cars.Pickup_date);
-	  var date2_ms = new Date(rented_cars.Return_Date);
-	  var noDays = (date2_ms.getTime() - date1_ms.getTime())/(1000*60*60*24);
-	  console.log('noDays: '+ (date2_ms.getTime() - date1_ms.getTime())/(1000*60*60*24));
-	res.render('trip_details', {trp_dtls:rented_cars,total_kms:kms,fuel_left:fuel, no_of_days:noDays,userId:req.body.userId,user:req.body.user});
-	});
+	fs.readFile(__dirname +'/public/cars.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		car_dtls=JSON.parse(data);
+		var car_class ;
+		var total_amt;
+		var fuel_charge;
+		for (var i = 0; i < car_dtls.length; ++i) {
+		    if (car_dtls[i].Car_Id==rented_cars.car){
+		    	car_class=car_dtls[i].Car_Class;
+		    	Car_name=car_dtls[i].Car_Name + ' - ' +car_dtls[i].Car_Number;
+		    	break;
+		    }
+		  }
+		
+		console.log('car_class: '+ car_class);
+		var date1_ms =new Date(rented_cars.Pickup_date);
+		  var date2_ms = new Date(rented_cars.Return_Date);
+		  var noDays = (date2_ms.getTime() - date1_ms.getTime())/(1000*60*60*24);
+		  console.log('noDays: '+ (date2_ms.getTime() - date1_ms.getTime())/(1000*60*60*24));
+		  if(car_class=='economy'){
+			  total_amt=noDays*10;
+		  }else if(car_class=='suv'){
+			  total_amt=noDays*12;
+		  }else if(car_class=='luxury'){
+			  total_amt=noDays*18;
+		  }else if(car_class=='sporty'){
+			  total_amt=noDays*20;
+		  }
+		  if(fuel>25){
+			  fuel_charge=(fuel/4);
+		  }
+		  console.log('total_amt: '+ total_amt);
+		res.render('trip_details', {trp_dtls:Car_name,total_kms:kms,fuel_cnsmd:fuel, no_of_days:noDays,userId:req.body.userId,user:req.body.user,total_amt:total_amt,fuel_charge:fuel_charge,bookingId:req.body.bookingId});
+		});
+});
 });
 
 app.get('/', routes.index);

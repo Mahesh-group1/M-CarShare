@@ -44,10 +44,13 @@
    <div id="content">
           <p style="font-size:20px;"> Trip Details:</p>
 <ul style="list-style: none;">
-	  <li style="align: left">Booked Car: <%= trp_dtls.car %></li>
-      <li style="align: left">No. of days booked: &nbsp <%= no_of_days %></li>
+	  <li style="align: left">Booked Car: <%= trp_dtls %></li>
+      <li style="align: left">No. of Days booked: &nbsp <%= no_of_days %></li>
       <li style="align: left">Kms Driven: <%= total_kms %>	  </li>
-      <li style="align: left">Fuel Consumed: <%= fuel_left %>%	  </li>
+      <li style="align: left">Fuel Consumed: <%= fuel_cnsmd %>%	  </li>
+      <li style="align: left">Booking Amount: <%= total_amt %>
+      <li style="align: left">Fuel Surcharge: <%= fuel_charge %>
+      <li style="align: left">Total Amout to be Paid: $<%= total_amt+fuel_charge %>
 	  </ul> 
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
