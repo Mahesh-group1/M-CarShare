@@ -1,110 +1,56 @@
+// server.js
 
-/**
- * Module dependencies.
- */
+// set up ======================================================================
+// get all the tools we need
+var express  = require('express');
+var http = require('http');
+var app      = express();
+var port     = process.env.PORT || 3340;
+var path = require('path');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var bodyParser = require('body-parser');
+var fs =require('fs');
+var nodemailer = require('nodemailer');
+var session = require('express-session');
+var configDB = require('./config/db.js');
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path')
-  , bodyParser = require('body-parser')
-  , util = require('util')
-  , fs =require('fs'),
-  Booking =require('./Booking.js'),
-  Customer=require('./Customer.js'),
-  nodemailer = require('nodemailer'),
-  Cars = require('./Cars');
-var app = express();
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
+
+require('./config/passport')(passport); // pass passport for configuration
+
 var transporter = nodemailer.createTransport('smtps://mcarshare6091%40gmail.com:"mcarshare"@smtp.gmail.com');
-
-//setup e-mail data with unicode symbols
 var mailOptions = {
-    from: '"M-Carshare" <mcarshare6091@gmail.com>', // sender address
-    to: '', // list of receivers
-    subject: 'Hello', // Subject line
-    text: 'Hello world', // plaintext body
-    html: '<b>Hello world: </b> <a href="http://localhost:3340/verify"> verify</a>'
-};
-//var userId;
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+	    from: '"M-Carshare" <mcarshare6091@gmail.com>', // sender address
+	    to: '', // list of receivers
+	    subject: 'Hello', // Subject line
+	    text: 'Hello world', // plaintext body
+	    html: '<b>Hello world: </b> <a href="http://localhost:3340/verify"> verify</a>'
+	};
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
+
+	// set up our express application
+	//app.use(express.logger('dev')); // log every request to the console
+var cookieParser = require('cookie-parser');
+app.use(cookieParser()); // read cookies (needed for auth)
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: true }));
+
+	app.set('view engine', 'ejs'); // set up ejs for templating
+
+	// required for passport
+	app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+	app.use(passport.initialize());
+	app.use(passport.session()); // persistent login sessions
+	app.use(flash()); // use connect-flash for flash messages stored in session
 
 
-app.get('/', function (req, res) {
-	   res.sendFile( __dirname + "/" + "index.htm" );
-	});
 
-app.get('/index.htm', function (req, res) {
-	   res.sendFile( __dirname + "/" + "index.htm" );
-	});
-app.get('/MyHome', function (req, res) {
-	res.render('MyHome',{userId: userId});
-	});
-
-app.get('/addCar', function (req, res) {
-	res.render('addCar');
-	});
-
-app.post('/login', function (req, res) {
-	var jsonData;
-	var chck=-1;
-	if (req.body.userid=='admin'){
-		res.render('adminHome');
-	}
-	else{
-	    fs.readFile(__dirname +'/public/login_details.json', 'utf8', function (err, data) {
-		  if (err) throw err;
-		   jsonData = JSON.parse(data);
-		 // var chck=-1;
-		  for (var i = 0; i < jsonData.length; ++i) {
-		    if (jsonData[i].user_id===req.body.userid){
-		    	chck=i;
-		    	break;		    	
-		    }
-		  }
-	    
-	    
-	    console.log(chck);
-		  if (chck!=-1 ){
-			  if (req.body.password===jsonData[chck].password && jsonData[chck].verified==true){
-				  fs.readFile(__dirname +'/public/user_details.json', 'utf8', function (err, data) {
-			    		if (err) throw err;
-			    		userObj = JSON.parse(data);
-			    		var userName;
-			    		for (var i = 0; i < userObj.length; ++i) {
-			    		    if (userObj[i].user_id===req.body.userid){
-			    		    	userName=userObj[i].first_name;
-			    		    	break;
-			    		    }
-			    		  }
-			    		res.render('MyHome',{user: userName,userId: jsonData[chck].user_id});
-				  });
-			  }else if (req.body.password===jsonData[chck].password && jsonData[chck].verified==false){
-				  res.end('Emailid Not Verified.');
-			  }
-			  
-			  else {
-				  res.end('Invalid password');
-			  }
-		  }
-		  else{
-			  
-			  res.end('Invalid User Id');
-		  }
-	    });
-		
-	
-	   
-	   console.log(req.body.userid);
-	   console.log(req.body.password);
-	}
-	});
+// routes ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.get('/verify', function (req, res) {
 	console.log('req.query.user: ' + req.query.user);
@@ -135,68 +81,10 @@ app.get('/verify', function (req, res) {
 	
 	});
 
-app.post('/signup', function (req, res) {
-	
-	var jsonData;
-	var chck=-1;
-    fs.readFile(__dirname +'/public/login_details.json', 'utf8', function (err, data) {
-	  if (err) throw err;
-	   jsonData = JSON.parse(data);
-	 // var chck=-1;
-	  for (var i = 0; i < jsonData.length; ++i) {
-	    if (jsonData[i].user_id===req.body.userid){
-	    	chck=i;
-	    	break;		    	
-	    }
-	  }
-	  if (chck===-1){
-		  var userId=req.body.email_id;
-		  jsonData.push({user_id: req.body.email_id, password:req.body.password, verified:false});
-	        var json = JSON.stringify(jsonData); 
-	        fs.writeFile(__dirname +'/public/login_details.json', json);
-	    	var userObj =  [];
-	    	fs.readFile(__dirname +'/public/user_details.json', 'utf8', function (err, data) {
-	    		if (err) throw err;
-	    		userObj = JSON.parse(data);
-	    		userObj.push({user_id: req.body.email_id, first_name:req.body.first_name, last_name:req.body.last_name, phone:req.body.phone, address:req.body.address});
-	    		var json = JSON.stringify(userObj); 
-	            fs.writeFile(__dirname +'/public/user_details.json', json);
-	    	})
-	    	
-	    	mailOptions.to=req.body.email_id;
-	    	mailOptions.html='<b>Hello world 🐴: </b> <a href="http://localhost:3340/verify?user='+req.body.email_id+'"> verify</a>';
-	    	   //res.sendfile( __dirname + "/" + "MyHome.html" );
-	    	transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-});
-	    	res.render('userCreated' );
-	        
-	        
-	        //res.end('User Id created. Verify your email id from the mail sent.');
-		  }
-	  else {
-		  res.end('User Id already exist');
-	  }
-    });
-	  
-	  
 
-	});
+/*
 
 
-app.post('/MyHome', function (req, res) {
-  		res.render('MyHome',{user: req.body.user,userId: req.body.userId});
-	});
-
-app.post('/confirm.html', function (req, res) {
-	   res.sendfile( __dirname + "/" + "confirm.html" );
-	});
-app.post('/rent_car', function (req, res) {
-	res.render('rentCar', {user:req.body.user,userId:req.body.userId});
-	});
 
 app.post('/myAccount', function (req, res) {
 	var userObj =  [];
@@ -316,11 +204,10 @@ app.post('/tripDetails', function (req, res) {
 		res.render('trip_details', {trp_dtls:Car_name,total_kms:kms,fuel_cnsmd:fuel, no_of_days:noDays,userId:req.body.userId,user:req.body.user,total_amt:total_amt,fuel_charge:fuel_charge,bookingId:req.body.bookingId,dropLocation:req.body.carLocation,car_id:rented_cars.car});
 		});
 });
-});
+});*/
 
-app.get('/', routes.index);
-app.get('/users', user.list);
 
+/*
 app.get('/viewCars', function (req, res) {
 	var economy_cars =  [];
 	var suv_cars =  [];
@@ -346,8 +233,8 @@ app.get('/viewCars', function (req, res) {
 	res.render('addCar',{economy_cars: economy_cars,suv_cars:suv_cars,luxury_cars:luxury_cars,sporty_cars:sporty_cars});
 	});
 });
-
-app.post('/addCar', function (req, res) {
+*/
+/*app.post('/addCar', function (req, res) {
 	var economy_cars =  [];
 	var suv_cars =  [];
 	var luxury_cars =  [];
@@ -461,7 +348,7 @@ app.post('/checkoutCar', function (req, res) {
 		res.render('checkout',{bookings:rented_cars,numbrs:rented_cars.length,user:req.body.user,userId:req.body.userId});
 		});
 });
-
-http.createServer(app).listen(3340, function(){
+*/
+http.createServer(app).listen(port, function(){
   console.log('Express server listening on port 3340');
 });

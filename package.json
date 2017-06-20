@@ -11,6 +11,14 @@
     	"express": "4.8.*",
     	"method-override":"*",
     	"body-parser": "1.8",
-    	"ejs": "~0.7.1" 
+    	"ejs": "~0.7.1",
+    	"mongodb" : "~1.4.26",
+    	"mongoose" : "~3.8.0",
+    	"passport" : "~0.1.17",         
+        "passport-local" : "~0.1.6",
+        "bcrypt-nodejs" : "latest",
+        "express-session": "~1.0.0",
+        "connect-flash" : "~0.1.1",
+        "cookie-parser" : "1.4.3"
   }
 }
